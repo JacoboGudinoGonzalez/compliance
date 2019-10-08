@@ -1,1 +1,114 @@
-<p>register works!</p>
+<div class="card m-3">
+    <h5 class="card-header">{{ title }}</h5>
+    <div class="card-body">
+        <form [formGroup]="registerUserForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-4">
+                    <label for="name">Nombre</label>
+                    <input id="name" name="name" type="text" formControlName="name" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.name.errors }" autocomplete="off" autofocus required
+                        style="text-transform:uppercase" />
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required">El nombre es requerido</div>
+                    </div>
+                </div>
+                <div class="form-group col-4">
+                    <label for="patSurname">Apellido Paterno</label>
+                    <input id="patSurname" name="patSurname" type="text" formControlName="patSurname"
+                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.patSurname.errors }"
+                        autocomplete="off" required style="text-transform:uppercase" />
+                    <div *ngIf="submitted && f.patSurname.errors" class="invalid-feedback">
+                        <div *ngIf="f.patSurname.errors.required">El Apellido Paterno requerido</div>
+                    </div>
+                </div>
+                <div class="form-group col-4">
+                    <label for="matSurname">Apellido Materno</label>
+                    <input id="matSurname" name="matSurname" type="text" formControlName="matSurname"
+                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.matSurname.errors }"
+                        autocomplete="off" required style="text-transform:uppercase" />
+                    <div *ngIf="submitted && f.matSurname.errors" class="invalid-feedback">
+                        <div *ngIf="f.matSurname.errors.required">El Apellido Materno requerido</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-4">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="text" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" autocomplete="off" required
+                        style="text-transform:uppercase" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">El Email es requerido</div>
+                        <div *ngIf="f.email.errors.email">El Email debe de ser válido</div>
+                    </div>
+                </div>
+                <div class="form-group col-4">
+                    <label for="taxId">RFC</label>
+                    <input id="taxId" name="taxId" type="taxId" formControlName="taxId" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.taxId.errors }" minlength="12" maxlength="13"
+                        autocomplete="off" required style="text-transform:uppercase" />
+                    <div *ngIf="submitted && f.taxId.errors" class="invalid-feedback">
+                        <div *ngIf="f.taxId.errors.required">El RFC es requerido</div>
+                        <div *ngIf="f.taxId.errors.minlength">El RFC debe tener al menos 12 caractéres</div>
+                        <div *ngIf="f.taxId.errors.maxlength">El RFC debe tener al menos 13 caractéres</div>
+                    </div>
+                </div>
+                <div class="form-group col-4">
+                    <label for="type">Tipo de usuario</label>
+                    <select id="type" name="type" formControlName="type" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.type.errors }" autocomplete="off" required>
+                        <option value=""></option>
+                        <option value="0">AGENTE ADUANAL</option>
+                        <option value="1">IMPORTADOR/EXPORTADOR</option>
+                    </select>
+                    <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+                        <div *ngIf="f.type.errors.required">El Tipo de usuario requerido</div>
+                    </div>
+                </div>
+            </div> 
+            <div class="form-row">
+                <div class="form-group col-4">
+                    <label for="tel">Teléfono</label>
+                    <input id="tel" name="tel" type="number" formControlName="tel" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.tel.errors }" minlength="10" maxlength="10" 
+                        autocomplete="off" required />
+                    <div *ngIf="submitted && f.tel.errors" class="invalid-feedback">
+                        <div *ngIf="f.tel.errors.required">El Teléfono es requerido</div>
+                        <div *ngIf="f.tel.errors.minlength">El Teléfono debe tener 10 caractéres</div>
+                    </div>
+                </div>
+                <div class="form-group col-4">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" minlength="8" autocomplete="off"
+                        required />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
+                        <div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 8 caractéres</div>
+                    </div>
+                </div>
+                <div class="form-group col-4">
+                    <label for="confirmPassword">Confirmar Contraseña</label>
+                    <input id="confirmPassword" name="confirmPassword" type="password" formControlName="confirmPassword"
+                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+                        minlength="8" autocomplete="off" required />
+                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.confirmPassword.errors.required">Debe confirmar su contraseña</div>
+                        <div *ngIf="f.confirmPassword.errors.mustMatch">La contraseña debe coincidir</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input"
+                    [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
+                <label for="acceptTerms" class="form-check-label">Aceptar Términos y Condiciones</label>
+                <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Debe Aceptar Términos y
+                    Condiciones</div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Registrar</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
