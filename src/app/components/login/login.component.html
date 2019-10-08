@@ -1,32 +1,38 @@
-<div class="card border-primary text-center m-3">
-    <div class="card-header">{{titleCard}}</div>
+<div class="card login m-3">
+    <h5 class="card-header">{{ titleCard }}</h5>
     <div class="card-body">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="taxId">RFC</label>
-          <input id="taxId" name="taxId" type="text" formControlName="taxId" class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.taxId.errors }" 
-            autocomplete="off" autofocus required
-            style="text-transform:uppercase"/>
-          <div *ngIf="submitted && f.taxId.errors" class="invalid-feedback">
-            <div *ngIf="f.taxId.errors.required">El RFC es requerido</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" formControlName="password" class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" autocomplete="off" required/>
-          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <button [disabled]="loading" class="btn btn-primary">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Login
-          </button>
-          <a routerLink="/register" class="btn btn-link">Register</a>
-        </div>
-      </form>
+        <form [formGroup]="loginUserForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label for="taxId">RFC</label>
+                    <input id="taxId" name="taxId" type="taxId" formControlName="taxId" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.taxId.errors }" minlength="12" maxlength="13"
+                        autofocus autocomplete="new-password" required style="text-transform:uppercase" />
+                    <div *ngIf="submitted && f.taxId.errors" class="invalid-feedback">
+                        <div *ngIf="f.taxId.errors.required">El RFC es requerido</div>
+                        <div *ngIf="f.taxId.errors.minlength">El RFC debe tener al menos 12 caractéres</div>
+                        <div *ngIf="f.taxId.errors.maxlength">El RFC debe tener al menos 13 caractéres</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" autocomplete="new-password"
+                        required />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-right">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <a routerLink="/register" class="btn btn-link">Register</a>
+            </div>
+        </form>
     </div>
-  </div>
+</div>
