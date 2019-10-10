@@ -6,7 +6,7 @@ export class User{
     patSurame: string;
     matSurame: string;
     email: string;
-    tel: number;
+    tel: string;
     type: number;
     roles: string[] = [];
 }

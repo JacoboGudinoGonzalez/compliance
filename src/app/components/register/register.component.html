@@ -5,7 +5,7 @@
             <div class="form-row">
                 <div class="form-group col-4">
                     <label for="name">Nombre</label>
-                    <input id="name" name="name" type="text" formControlName="name" class="form-control"
+                    <input id="name" name="name" type="text" formControlName="name" class="form-control form-control-sm"
                         [ngClass]="{ 'is-invalid': submitted && f.name.errors }" autocomplete="new-password" autofocus required
                         style="text-transform:uppercase" />
                     <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
@@ -15,7 +15,7 @@
                 <div class="form-group col-4">
                     <label for="patSurname">Apellido Paterno</label>
                     <input id="patSurname" name="patSurname" type="text" formControlName="patSurname"
-                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.patSurname.errors }"
+                        class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.patSurname.errors }"
                         autocomplete="new-password" required style="text-transform:uppercase" />
                     <div *ngIf="submitted && f.patSurname.errors" class="invalid-feedback">
                         <div *ngIf="f.patSurname.errors.required">El Apellido Paterno requerido</div>
@@ -24,7 +24,7 @@
                 <div class="form-group col-4">
                     <label for="matSurname">Apellido Materno</label>
                     <input id="matSurname" name="matSurname" type="text" formControlName="matSurname"
-                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.matSurname.errors }"
+                        class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.matSurname.errors }"
                         autocomplete="new-password" required style="text-transform:uppercase" />
                     <div *ngIf="submitted && f.matSurname.errors" class="invalid-feedback">
                         <div *ngIf="f.matSurname.errors.required">El Apellido Materno requerido</div>
@@ -34,7 +34,7 @@
             <div class="form-row">
                 <div class="form-group col-4">
                     <label for="email">Email</label>
-                    <input id="email" name="email" type="text" formControlName="email" class="form-control"
+                    <input id="email" name="email" type="text" formControlName="email" class="form-control form-control-sm"
                         [ngClass]="{ 'is-invalid': submitted && f.email.errors }" autocomplete="new-password" required
                         style="text-transform:uppercase" />
                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="taxId">RFC</label>
-                    <input id="taxId" name="taxId" type="taxId" formControlName="taxId" class="form-control"
+                    <input id="taxId" name="taxId" type="taxId" formControlName="taxId" class="form-control form-control-sm"
                         [ngClass]="{ 'is-invalid': submitted && f.taxId.errors }" minlength="12" maxlength="13"
                         autocomplete="new-password" required style="text-transform:uppercase" />
                     <div *ngIf="submitted && f.taxId.errors" class="invalid-feedback">
@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="type">Tipo de usuario</label>
-                    <select id="type" name="type" formControlName="type" class="form-control"
+                    <select id="type" name="type" formControlName="type" class="form-control form-control-sm"
                         [ngClass]="{ 'is-invalid': submitted && f.type.errors }" autocomplete="new-password" required>
                         <option value=""></option>
                         <option value="0">AGENTE ADUANAL</option>
@@ -69,7 +69,7 @@
             <div class="form-row">
                 <div class="form-group col-4">
                     <label for="tel">Teléfono</label>
-                    <input id="tel" name="tel" type="text" numbersOnly formControlName="tel" class="form-control"
+                    <input id="tel" name="tel" type="text" numbersOnly formControlName="tel" class="form-control form-control-sm"
                         [ngClass]="{ 'is-invalid': submitted && f.tel.invalid }" minlength="10" maxlength="10"
                         autocomplete="new-password" required />
                     <div *ngIf="submitted && f.tel.errors" class="invalid-feedback">
@@ -79,7 +79,7 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="password">Password</label>
-                    <input id="password" name="password" type="password" formControlName="password" class="form-control"
+                    <input id="password" name="password" type="password" formControlName="password" class="form-control form-control-sm"
                         [ngClass]="{ 'is-invalid': submitted && f.password.errors }" minlength="8" autocomplete="new-password"
                         required />
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
@@ -90,7 +90,7 @@
                 <div class="form-group col-4">
                     <label for="confirmPassword">Confirmar Contraseña</label>
                     <input id="confirmPassword" name="confirmPassword" type="password" formControlName="confirmPassword"
-                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+                        class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
                         minlength="8" autocomplete="new-password" required />
                     <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
                         <div *ngIf="f.confirmPassword.errors.required">Debe confirmar su contraseña</div>
@@ -100,7 +100,7 @@
             </div>
             <!-- <div class="text-right"> -->
             <div class="form-group form-check">
-                <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input"
+                <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input form-control-sm"
                     [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
                 <label for="acceptTerms" class="form-check-label">Aceptar Términos y Condiciones</label>
                 <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Debe Aceptar Términos y

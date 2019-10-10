@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { User } from 'src/app/models/user';
+
+
+//services
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -9,11 +17,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class LoginComponent implements OnInit {
   
-  titleCard: string = "Iniciar Sesión";
+  user: User;
   loginUserForm: FormGroup;
+  titleCard: string = "Iniciar Sesión";
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private _authService: AuthService
+    ) {
+    this.user = new User();
   }
 
   ngOnInit() {
@@ -34,10 +48,14 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    // display form values on success
-    alert(this.loginUserForm.value);
-
-    this.onReset()
+    this.user = this.loginUserForm.value;
+    this._authService.login(this.user).subscribe(response =>{
+      console.log(response);
+      this.router.navigate(['/home']);
+      //swal
+    });
+    
+    this.onReset();
   }
 
   onReset() {

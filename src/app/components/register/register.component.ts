@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 import { MustMatch } from '../../util/must-match.validator';
 // import { User } from 'src/app/models/user';
@@ -58,9 +58,9 @@ export class RegisterComponent implements OnInit {
       title: 'Registro completo!',
       html: 'Puedes iniciar sesión ' +'<a href="/login">aquí</a>',
       showConfirmButton: false,
-    })
+    });
 
-    this.onReset()
+    this.onReset();
   }
 
   onReset() {
