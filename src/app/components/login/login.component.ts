@@ -7,6 +7,7 @@ import { User } from 'src/app/models/user';
 
 //services
 import { AuthService } from '../../services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   
   user: User;
+  users:User[];
   loginUserForm: FormGroup;
   titleCard: string = "Iniciar Sesión";
   submitted = false;
@@ -25,7 +27,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _userService: UserService
     ) {
     this.user = new User();
   }
@@ -35,6 +38,11 @@ export class LoginComponent implements OnInit {
       taxId: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(13)]],
       password: ['', [Validators.required]]
     });
+
+    this._userService.getUsers().subscribe(
+      users => this.users = users
+    );
+    console.log(this.users);
   }
 
   // convenience getter for easy access to form fields
@@ -51,6 +59,9 @@ export class LoginComponent implements OnInit {
     this.user = this.loginUserForm.value;
     this._authService.login(this.user).subscribe(response =>{
       console.log(response);
+      this._authService.saveUser(response.access_token);
+      this._authService.saveToken(response.access_token);
+      let user = this._authService.user;
       this.router.navigate(['/home']);
       //swal
     });
